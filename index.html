@@ -1,48 +1,356 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ken Lee | Cybersecurity Specialist</title>
-    <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
-        header { text-align: center; padding: 40px 0; }
-        .btn { display: inline-block; background: #0066cc; color: #fff; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; }
-        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 20px 0; background: #000; }
-        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-        section { margin-bottom: 40px; }
-        h2 { border-bottom: 2px solid #eee; padding-bottom: 10px; }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ken [Surname] | Security Operations Lead</title>
+<meta name="description" content="Resume and video introduction of Ken [Surname], SOC lead with 7+ years in cybersecurity.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@600;700;800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --fog:#F4F1F9; --paper:#FBFAFD; --ink:#1E1530; --steel:#675C7D;
+  --line:#DAD3E7; --accent:#6A35D8; --accent-ink:#fff; --pair:#16A58E; --pair-ink:#0E2B26;
+  --head:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --body:"Instrument Sans","Helvetica Neue",Arial,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{--fog:#150F20; --paper:#1D1530; --ink:#EDE8F7; --steel:#A99FC0; --line:#33284A; --accent:#A98BFF; --accent-ink:#150F20; --pair:#3DDBB8; --pair-ink:#0E2B26}
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--fog);color:var(--ink);font:400 1.0625rem/1.65 var(--body)}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 1.5rem}
+section{padding:5.5rem 0}
+h1,h2,h3{font-family:var(--head);line-height:1.05;margin:0}
+h1{font-size:clamp(3.2rem,10vw,7.5rem);font-weight:800;letter-spacing:-.035em}
+h2{font-size:clamp(1.9rem,4vw,2.8rem);font-weight:800;letter-spacing:-.02em;margin-bottom:2.5rem}
+h3{font-size:1.3rem;font-weight:700}
+p{margin:0 0 1rem;max-width:62ch}
+.muted{color:var(--steel)}
+
+/* Top banner */
+.topbar{position:sticky;top:0;z-index:20;background:#1E1530;border-bottom:1px solid rgba(237,232,247,.14)}
+.topbar .wrap{display:flex;align-items:center;min-height:3.4rem}
+.topbar a{display:inline-flex;align-items:center;line-height:1.2;color:#EDE8F7;text-decoration:none;font:500 .95rem/1.2 var(--body);padding:.5rem .85rem;border-radius:999px;white-space:nowrap;transition:background .2s,color .2s}
+.topbar a:hover{background:rgba(255,255,255,.1)}
+.topbar a:focus-visible{outline-color:#3DDBB8}
+.topbar a[aria-current="true"]{color:#3DDBB8;background:rgba(61,219,184,.12)}
+.topbar .home{display:inline-flex;align-items:center;gap:.45rem}
+.topbar .home svg{width:1.1em;height:1.1em;display:block;flex:none}
+.topbar .links li{display:flex}
+.topbar .links{display:flex;gap:.2rem;list-style:none;margin:0 auto;padding:0;min-width:0;overflow-x:auto;scrollbar-width:none}
+.topbar .links::-webkit-scrollbar{display:none}
+
+/* Hero */
+.hero{background:#2A1B4A;color:#EDE8F7;padding:5rem 0 4.5rem}
+.hero-card{display:flex;align-items:center;gap:1.6rem;margin-bottom:2.2rem}
+.avatar{width:clamp(96px,16vw,148px);height:clamp(96px,16vw,148px);border-radius:50%;object-fit:cover;border:3px solid rgba(237,232,247,.25);flex:none}
+.hero h1{font-family:"Anton",Impact,"Arial Narrow",sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:.01em;line-height:1;font-size:clamp(2.4rem,7vw,5rem)}
+.hero .role{font:600 1.15rem var(--head);color:#A98BFF;margin:0 0 .6rem}
+.hero .sub{color:#B9ADD3;margin:.6rem 0 0;font-size:1.05rem}
+.hero .lede{font-size:1.2rem;margin:0 0 2rem;color:#EDE8F7}
+.hero .btn.primary{background:var(--pair);color:var(--pair-ink);border-color:var(--pair)}
+.hero .btn.primary:hover{filter:brightness(1.08)}
+.hero .btn.ghost{color:#EDE8F7;border-color:rgba(237,232,247,.28);background:rgba(255,255,255,.07)}
+.hero .btn.ghost:hover{background:rgba(255,255,255,.16);color:#EDE8F7}
+.btn{cursor:pointer;font:inherit;font-weight:600}
+details.menu{position:relative}
+details.menu summary{list-style:none}
+details.menu summary::-webkit-details-marker{display:none}
+details.menu[open] summary .chev{transform:rotate(180deg)}
+.chev{transition:transform .2s}
+.menu-list{position:absolute;top:calc(100% + .5rem);left:0;min-width:100%;background:#1E1530;border:1px solid rgba(237,232,247,.2);border-radius:14px;padding:.4rem;z-index:5}
+.menu-list a{display:block;padding:.65rem 1rem;border-radius:10px;text-decoration:none;color:#EDE8F7;white-space:nowrap}
+.menu-list a:hover{background:rgba(255,255,255,.12)}
+.btns{display:flex;flex-wrap:wrap;gap:.8rem}
+.btn{display:inline-flex;align-items:center;gap:.6rem;padding:.85rem 1.4rem;border-radius:999px;font-weight:600;text-decoration:none;border:2px solid var(--accent);transition:background .2s,color .2s}
+.btn.primary{background:var(--accent);color:var(--accent-ink)}
+.btn.primary:hover{filter:brightness(1.1)}
+.btn.ghost{color:var(--accent)}
+.btn.ghost:hover{background:var(--accent);color:var(--accent-ink)}
+.btn svg{width:1.1em;height:1.1em}
+
+/* Video */
+.frame{background:var(--ink);border-radius:14px;overflow:hidden;aspect-ratio:16/9;box-shadow:0 1px 0 var(--line)}
+.frame video,.frame iframe{width:100%;height:100%;display:block;border:0;background:#000}
+.caption{margin-top:1rem;color:var(--steel);font-size:.95rem}
+
+/* Timeline: the one deliberate motion piece */
+.timeline{position:relative;padding-left:2.2rem}
+.timeline::before,.timeline .progress{content:"";position:absolute;left:6px;top:.4rem;bottom:.4rem;width:2px;background:var(--line)}
+.timeline .progress{background:var(--accent);bottom:auto;height:calc(var(--p,0) * (100% - .8rem));transition:height .15s linear}
+.job{position:relative;padding-bottom:3rem}
+.job:last-child{padding-bottom:0}
+.job::before{content:"";position:absolute;left:-2.2rem;top:.5rem;width:14px;height:14px;border-radius:50%;background:var(--pair);border:2px solid var(--accent)}
+.job .when{color:var(--steel);font-size:.95rem;margin:.2rem 0 .8rem}
+.job ul{margin:0;padding-left:1.1rem;max-width:62ch}
+.job li{margin-bottom:.4rem}
+
+/* Skills */
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2.2rem}
+.skills h3{font-size:1.1rem;margin-bottom:.7rem}
+.skills ul{list-style:none;margin:0;padding:0}
+.skills li{padding:.35rem 0;border-bottom:1px solid var(--line)}
+
+/* Footer */
+.contact{background:var(--ink);color:var(--fog)}
+.contact h2{color:var(--fog)}
+.contact a{color:var(--fog)}
+.contact .btn.primary{background:var(--pair);color:var(--pair-ink);border-color:var(--pair)}
+.contact .btn.ghost{color:var(--fog);border-color:var(--fog)}
+.contact .btn.ghost:hover{background:var(--fog);color:var(--ink)}
+footer{padding:1.5rem 0;font-size:.9rem;color:var(--steel)}
+
+/* Scroll reveal (only active when JS is running) */
+.js .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;transition-delay:var(--d,0s)}
+.js .reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .js .reveal{opacity:1;transform:none;transition:none}
+  .timeline .progress{transition:none}
+}
+</style>
 </head>
 <body>
+<script>document.documentElement.classList.add('js')</script>
 
-    <header>
+<nav class="topbar" aria-label="Page sections">
+  <div class="wrap">
+    <ul class="links">
+      <li><a class="home" href="#top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 11l9-8 9 8M5 10v10h5v-6h4v6h5V10"/></svg>Home</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Tools and skills</a></li>
+      <li><a href="#education">Education and certifications</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-card reveal">
+      <img class="avatar" src="media/headshot.jpg" width="148" height="148" alt="Portrait of Ken">
+      <div>
+        <p class="role">Security Operations Lead</p>
         <h1>Ken Lee</h1>
-        <p>Cybersecurity & Incident Response Specialist</p>
-        <p><a href="mailto:cyber@kenleesecurity.com" class="btn">Get In Touch</a></p>
-    </header>
-
-    <section>
-        <h2>Quick Introduction</h2>
-        <!-- Replace SRC with your unlisted YouTube/Vimeo video embed link -->
-        <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" frameborder="0" allowfullscreen></iframe>
+        <p class="sub">Washington, DC - Baltimore Area</p>
+      </div>
+    </div>
+    <p class="lede reveal" style="--d:.08s">A cybersecurity professional with over seven years defending Microsoft-centric environments, and leading the analysts who do it every day across US, India, and Spain teams.</p>
+    <div class="btns reveal" style="--d:.16s">
+      <button class="btn primary" type="button" id="playIntro">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>
+        Play Intro
+      </button>
+      <details class="menu" id="resumeMenu">
+        <summary class="btn ghost">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16"/></svg>
+          Download Resume
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <div class="menu-list">
+          <a href="resume/Ken-Surname-Resume.pdf" download>PDF</a>
+          <a href="resume/Ken-Surname-Resume.docx" download>Word (DOCX)</a>
         </div>
-    </section>
+      </details>
+    </div>
+  </div>
+</header>
 
-    <section>
-        <h2>About Me</h2>
-        <p>Short executive summary highlighting key strengths, tooling expertise, and security certifications.</p>
-    </section>
+<main>
+  <section id="intro">
+    <div class="wrap">
+      <h2 class="reveal">A sixty second introduction</h2>
+      <div class="frame reveal" style="--d:.1s">
+        <!-- Option B: YouTube/Vimeo.-->
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/gvIFNfKBjnA?si=okCivguqt70r7wxl"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+        </iframe>
+      </div>
+      <p class="caption reveal" id="vid-note">Who I am, what I lead, and the kind of team I'm looking to join.</p>
+    </div>
+  </section>
 
-    <section>
-        <h2>Resume & Core Skills</h2>
-        <ul>
-            <li><strong>Security Expertise:</strong> Network Security, Threat Hunting, Incident Response</li>
-            <li><strong>Tools & Platforms:</strong> Splunk, AWS, Wireshark, Sentinel, Python</li>
-        </ul>
-        <p><a href="resume.pdf" target="_blank">📄 Download Full Resume (PDF)</a></p>
-    </section>
+  <section id="experience">
+    <div class="wrap">
+      <h2 class="reveal">Experience</h2>
+      <div class="timeline" id="timeline">
+        <div class="progress" aria-hidden="true"></div>
 
+        <article class="job reveal">
+          <h3>Lead Security Operations Analyst, Deloitte</h3>
+          <p class="when">April 2023 to present</p>
+          <ul>
+            <li>Lead a distributed team of [#] analysts across the US and India, covering [24/7 / follow-the-sun] operations.</li>
+            <li>Built and tuned detections in Defender XDR and Splunk, cutting [metric] by [X%].</li>
+            <li>Run structured threat hunts using KQL, from hypothesis through to detection engineering.</li>
+            <li>Mentor analysts through [onboarding / escalation / incident handling], with [#] promoted.</li>
+          </ul>
+        </article>
+
+        <article class="job reveal">
+          <h3>Senior Security Operations Analyst, Deloitte</h3>
+          <p class="when">July 2021 to April 2023</p>
+          <ul>
+            <li>Investigated and responded to incidents across Microsoft 365, Entra ID, and Azure.</li>
+            <li>[Add an outcome with a number: time saved, incidents handled, risk reduced.]</li>
+          </ul>
+        </article>
+
+        <article class="job reveal">
+          <h3>Junior Security Operations Analyst, Deloitte</h3>
+          <p class="when">April 2020 to July 2021</p>
+          <ul>
+            <li>[First role highlight.]</li>
+            <li>[Second role highlight.]</li>
+          </ul>
+        </article>
+
+        <article class="job reveal">
+          <h3>Associate Cyber Threat Analyst, LookingGlass Cyber Solutions</h3>
+          <p class="when">August 2019 to April 2020</p>
+          <ul>
+            <li>[First role highlight.]</li>
+            <li>[Second role highlight.]</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <h2 class="reveal">Tools and skills</h2>
+      <div class="skills">
+        <div class="reveal">
+          <h3>Platforms</h3>
+          <ul><li>Microsoft Defender XDR</li><li>Microsoft Entra ID</li><li>Microsoft 365 and Azure</li><li>Splunk</li></ul>
+        </div>
+        <div class="reveal" style="--d:.1s">
+          <h3>Practice</h3>
+          <ul><li>Incident response</li><li>Threat hunting</li><li>Detection engineering (KQL, SPL)</li><li>[Add more]</li></ul>
+        </div>
+        <div class="reveal" style="--d:.2s">
+          <h3>Leadership</h3>
+          <ul><li>Analyst mentoring</li><li>Distributed US and India teams</li><li>Escalation and runbook design</li><li>[Add more]</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="wrap">
+      <h2 class="reveal">Education and certifications</h2>
+      <p class="reveal">[Degree, University, Year]</p>
+      <p class="reveal" style="--d:.08s">[Certification, issuer, year]</p>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <h2 class="reveal">Let's talk</h2>
+      <p class="reveal">Email me at <a href="mailto:you@example.com">you@example.com</a> or find me on <a href="https://www.linkedin.com/in/your-profile">LinkedIn</a>.</p>
+      <div class="btns reveal" style="--d:.1s">
+        <a class="btn primary" href="resume/Ken-Surname-Resume.pdf" download>Download resume (PDF)</a>
+        <a class="btn ghost" href="resume/Ken-Surname-Resume.docx" download>Download resume (DOCX)</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap">&copy; <span id="yr">2026</span> Ken [Surname]</div></footer>
+
+<script>
+(function(){
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // Play Intro: scroll to the video and start it
+  var playBtn = document.getElementById('playIntro');
+  var vid = document.getElementById('introVideo');
+  playBtn.addEventListener('click', function(){
+    document.getElementById('intro').scrollIntoView({behavior:'smooth'});
+    if (vid) { var p = vid.play(); if (p && p.catch) p.catch(function(){}); }
+  });
+
+  // Close the resume menu on outside click or Escape
+  var menu = document.getElementById('resumeMenu');
+  document.addEventListener('click', function(e){ if (!menu.contains(e.target)) menu.removeAttribute('open'); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') menu.removeAttribute('open'); });
+
+
+  // Home: scroll back to the very top and clear the URL hash
+  document.querySelector('.topbar .home').addEventListener('click', function(e){
+    e.preventDefault();
+    forced = null;
+    window.scrollTo({top:0, behavior:'auto'});
+    if (history.replaceState) history.replaceState(null, '', location.pathname + location.search);
+  });
+
+  // Highlight the current section in the banner
+  var navLinks = document.querySelectorAll('.topbar .links a:not(.home)');
+  var navIds = ['experience','skills','education','contact'];
+  var forced = null; // the link the visitor just clicked, kept until they scroll by hand
+  function setActive(){
+    var vh = window.innerHeight, active = null;
+    navIds.forEach(function(id){
+      var el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top <= vh * 0.4) active = id;
+    });
+    // At the very bottom of the page the last section can never reach the middle of the screen
+    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) active = 'contact';
+    // Back in the hero or video area: nothing highlighted
+    var exp = document.getElementById('experience');
+    if (exp && exp.getBoundingClientRect().top > vh * 0.4) active = null;
+    if (forced) active = forced;
+    navLinks.forEach(function(a){
+      if (active && a.getAttribute('href') === '#' + active) a.setAttribute('aria-current', 'true');
+      else a.removeAttribute('aria-current');
+    });
+  }
+  window.addEventListener('scroll', setActive, {passive:true});
+  window.addEventListener('resize', setActive);
+  setActive();
+
+  // A clicked link stays highlighted, even when the page can't scroll far enough to put its section on top
+  navLinks.forEach(function(a){
+    a.addEventListener('click', function(){ forced = a.getAttribute('href').slice(1); setActive(); });
+  });
+  function release(){ if (forced) { forced = null; setActive(); } }
+  window.addEventListener('wheel', release, {passive:true});
+  window.addEventListener('touchmove', release, {passive:true});
+  window.addEventListener('keydown', function(e){ if (e.key !== 'Enter') release(); });
+  document.addEventListener('pointerdown', function(e){ if (!e.target.closest('.topbar')) release(); });
+
+  // Reveal elements as they scroll into view
+  var items = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, {threshold:0.15, rootMargin:'0px 0px -40px 0px'});
+    items.forEach(function(el){ io.observe(el); });
+  } else {
+    items.forEach(function(el){ el.classList.add('in'); });
+  }
+
+  // Timeline line fills as you scroll through experience
+  var tl = document.getElementById('timeline');
+  function paint(){
+    var r = tl.getBoundingClientRect(), vh = window.innerHeight;
+    var p = (vh*0.6 - r.top) / r.height;
+    tl.style.setProperty('--p', Math.max(0, Math.min(1, p)));
+  }
+  window.addEventListener('scroll', paint, {passive:true});
+  window.addEventListener('resize', paint);
+  paint();
+})();
+</script>
 </body>
 </html>
