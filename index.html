@@ -58,28 +58,31 @@ p{margin:0 0 1rem;max-width:62ch}
   /* On phones the bar itself disappears; only the Menu button floats at the top left */
   .topbar{background:none;border-bottom:0;height:0}
   .topbar .wrap{justify-content:flex-start;min-height:0;padding-top:.75rem}
-.menu-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: .5rem;
-  /* Updated to match 80% transparency */
-  background: rgba(30, 21, 48, 0.8); 
-  border: 1px solid rgba(237,232,247,.28);
-  color: #EDE8F7;
-  border-radius: 999px;
-  padding: .5rem 1.1rem;
-  font: 500 .95rem/1.2 var(--body);
-  cursor: pointer;
-  box-shadow: 0 4px 14px rgba(0,0,0,.35);
-  /* Optional: Adds the matching frosted glass blur effect */
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-}  
+  .menu-toggle{display:inline-flex;align-items:center;gap:.5rem;background:#1E1530;border:1px solid rgba(237,232,247,.28);color:#EDE8F7;border-radius:999px;padding:.5rem 1.1rem;font:500 .95rem/1.2 var(--body);cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.35)}
   .menu-toggle:hover{background:#2A1B4A}
   .menu-toggle:focus-visible{outline-color:#3DDBB8}
   .menu-toggle svg{width:1.15em;height:1.15em;display:block}
   .menu-toggle[aria-expanded="true"] .icon-menu,.menu-toggle:not([aria-expanded="true"]) .icon-close{display:none}
-  .topbar .links{display:none;position:absolute;top:3.6rem;left:1rem;right:1rem;flex-direction:column;gap:.15rem;margin:0;padding:.5rem;overflow:visible;background:#1E1530;border:1px solid rgba(237,232,247,.2);border-radius:14px;box-shadow:0 12px 24px rgba(0,0,0,.35)}
+  .topbar .links {
+  display: none;
+  position: absolute;
+  top: 3.6rem;
+  left: 1rem;
+  right: 1rem;
+  flex-direction: column;
+  gap: .15rem;
+  margin: 0;
+  padding: .5rem;
+  overflow: visible;
+  /* Updated to match 80% transparency */
+  background: rgba(30, 21, 48, 0.8); 
+  border: 1px solid rgba(237, 232, 247, .2);
+  border-radius: 14px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, .35);
+  /* Adds the matching frosted glass blur effect underneath */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
   .topbar.open .links{display:flex}
   .topbar a{width:100%;white-space:normal;padding:.75rem 1rem;font-size:1rem}
 }
