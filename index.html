@@ -19,7 +19,7 @@
   :root{--fog:#150F20; --paper:#1D1530; --ink:#EDE8F7; --steel:#A99FC0; --line:#33284A; --accent:#A98BFF; --accent-ink:#150F20; --pair:#3DDBB8; --pair-ink:#0E2B26}
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:max(0px,calc(var(--bar-h,0px) - 4.5rem))}
+html{scroll-behavior:smooth}
 body{margin:0;background:var(--fog);color:var(--ink);font:400 1.0625rem/1.65 var(--body)}
 a{color:inherit}
 :focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
@@ -44,12 +44,17 @@ p{margin:0 0 1rem;max-width:62ch}
 .topbar .links li{display:flex}
 .topbar .links{display:flex;gap:.2rem;list-style:none;margin:0 auto;padding:0;min-width:0;overflow-x:auto;scrollbar-width:none}
 .topbar .links::-webkit-scrollbar{display:none}
+.menu-toggle{display:none}
 @media (max-width:640px){
-  .topbar .wrap{min-height:0;padding-top:.4rem;padding-bottom:.4rem}
-  .topbar .links{display:grid;grid-template-columns:1fr 1fr;gap:.15rem .25rem;width:100%;margin:0;overflow:visible}
-  .topbar .links li:first-child{grid-column:1/-1;justify-content:center}
-  .topbar a{width:100%;justify-content:center;text-align:center;white-space:normal;padding:.4rem .5rem;font-size:.9rem}
-  .topbar .links li:first-child a{width:auto;padding:.4rem .9rem}
+  .topbar .wrap{justify-content:flex-start}
+  .menu-toggle{display:inline-flex;align-items:center;gap:.5rem;background:none;border:1px solid rgba(237,232,247,.28);color:#EDE8F7;border-radius:999px;padding:.5rem 1.1rem;font:500 .95rem/1.2 var(--body);cursor:pointer}
+  .menu-toggle:hover{background:rgba(255,255,255,.1)}
+  .menu-toggle:focus-visible{outline-color:#3DDBB8}
+  .menu-toggle svg{width:1.15em;height:1.15em;display:block}
+  .menu-toggle[aria-expanded="true"] .icon-menu,.menu-toggle:not([aria-expanded="true"]) .icon-close{display:none}
+  .topbar .links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:.15rem;margin:0;padding:.5rem 1rem 1rem;overflow:visible;background:#1E1530;border-bottom:1px solid rgba(237,232,247,.14);box-shadow:0 12px 24px rgba(0,0,0,.35)}
+  .topbar.open .links{display:flex}
+  .topbar a{width:100%;white-space:normal;padding:.75rem 1rem;font-size:1rem}
 }
 
 /* Hero */
@@ -132,7 +137,12 @@ footer{padding:1.5rem 0;font-size:.9rem;color:var(--steel)}
 
 <nav class="topbar" aria-label="Page sections">
   <div class="wrap">
-    <ul class="links">
+    <button class="menu-toggle" type="button" id="navToggle" aria-expanded="false" aria-controls="navLinks">
+      <svg class="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      Menu
+    </button>
+    <ul class="links" id="navLinks">
       <li><a class="home" href="#top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 11l9-8 9 8M5 10v10h5v-6h4v6h5V10"/></svg>Home</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#skills">Tools and skills</a></li>
@@ -156,12 +166,12 @@ footer{padding:1.5rem 0;font-size:.9rem;color:var(--steel)}
     <div class="btns reveal" style="--d:.16s">
       <button class="btn primary" type="button" id="playIntro">
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>
-        Play Intro
+        Play intro
       </button>
       <details class="menu" id="resumeMenu">
         <summary class="btn ghost">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16"/></svg>
-          Download Resume
+          Download resume
           <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
         </summary>
         <div class="menu-list">
@@ -176,7 +186,7 @@ footer{padding:1.5rem 0;font-size:.9rem;color:var(--steel)}
 <main>
   <section id="intro">
     <div class="wrap">
-      <h2 class="reveal">A sixty second introduction.</h2>
+      <h2 class="reveal">Sixty second introduction</h2>
       <div class="video-slot reveal" style="--d:.1s">
         <div class="frame" id="introFrame">
           <button class="mini-close" type="button" id="miniClose" aria-label="Close mini player and pause the video">&times;</button>
@@ -269,7 +279,7 @@ footer{padding:1.5rem 0;font-size:.9rem;color:var(--steel)}
 
   <section class="contact" id="contact">
     <div class="wrap">
-      <h2 class="reveal">Let's talk.</h2>
+      <h2 class="reveal">Let's talk</h2>
       <p class="reveal">Email me at <a href="mailto:cyber@kenleesecurity.com">cyber@kenleesecurity.com</a> or find me on <a href="https://www.linkedin.com/in/kenlee1995/">LinkedIn</a>.</p>
       <div class="btns reveal" style="--d:.1s">
         <a class="btn primary" href="mailto:cyber@kenleesecurity.com">Start a conversation</a>
@@ -280,7 +290,7 @@ footer{padding:1.5rem 0;font-size:.9rem;color:var(--steel)}
   </section>
 </main>
 
-<footer><div class="wrap" center>&copy; <span id="yr">2026</span> Ken Lee</div></footer>
+<footer><div class="wrap">&copy; <span id="yr">2026</span> Ken Lee</div></footer>
 
 <script>
 (function(){
@@ -306,6 +316,21 @@ footer{padding:1.5rem 0;font-size:.9rem;color:var(--steel)}
   document.addEventListener('click', function(e){ if (!menu.contains(e.target)) menu.removeAttribute('open'); });
   document.addEventListener('keydown', function(e){ if (e.key === 'Escape') menu.removeAttribute('open'); });
 
+
+  // Phone menu: the banner links open and close behind a Menu button
+  var topbar = document.querySelector('.topbar');
+  var navToggle = document.getElementById('navToggle');
+  function setMenu(open){
+    topbar.classList.toggle('open', open);
+    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  navToggle.addEventListener('click', function(){ setMenu(!topbar.classList.contains('open')); });
+  document.getElementById('navLinks').addEventListener('click', function(e){ if (e.target.closest('a')) setMenu(false); });
+  document.addEventListener('click', function(e){ if (!topbar.contains(e.target)) setMenu(false); });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && topbar.classList.contains('open')) { setMenu(false); navToggle.focus(); }
+  });
+  window.addEventListener('resize', function(){ if (window.innerWidth > 640) setMenu(false); });
 
   // Home: scroll back to the very top and clear the URL hash
   document.querySelector('.topbar .home').addEventListener('click', function(e){
