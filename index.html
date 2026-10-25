@@ -46,13 +46,15 @@ p{margin:0 0 1rem;max-width:62ch}
 .topbar .links::-webkit-scrollbar{display:none}
 .menu-toggle{display:none}
 @media (max-width:640px){
-  .topbar .wrap{justify-content:flex-start}
-  .menu-toggle{display:inline-flex;align-items:center;gap:.5rem;background:none;border:1px solid rgba(237,232,247,.28);color:#EDE8F7;border-radius:999px;padding:.5rem 1.1rem;font:500 .95rem/1.2 var(--body);cursor:pointer}
-  .menu-toggle:hover{background:rgba(255,255,255,.1)}
+  /* On phones the bar itself disappears; only the Menu button floats at the top left */
+  .topbar{background:none;border-bottom:0;height:0}
+  .topbar .wrap{justify-content:flex-start;min-height:0;padding-top:.75rem}
+  .menu-toggle{display:inline-flex;align-items:center;gap:.5rem;background:#1E1530;border:1px solid rgba(237,232,247,.28);color:#EDE8F7;border-radius:999px;padding:.5rem 1.1rem;font:500 .95rem/1.2 var(--body);cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.35)}
+  .menu-toggle:hover{background:#2A1B4A}
   .menu-toggle:focus-visible{outline-color:#3DDBB8}
   .menu-toggle svg{width:1.15em;height:1.15em;display:block}
   .menu-toggle[aria-expanded="true"] .icon-menu,.menu-toggle:not([aria-expanded="true"]) .icon-close{display:none}
-  .topbar .links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:.15rem;margin:0;padding:.5rem 1rem 1rem;overflow:visible;background:#1E1530;border-bottom:1px solid rgba(237,232,247,.14);box-shadow:0 12px 24px rgba(0,0,0,.35)}
+  .topbar .links{display:none;position:absolute;top:3.6rem;left:1rem;right:1rem;flex-direction:column;gap:.15rem;margin:0;padding:.5rem;overflow:visible;background:#1E1530;border:1px solid rgba(237,232,247,.2);border-radius:14px;box-shadow:0 12px 24px rgba(0,0,0,.35)}
   .topbar.open .links{display:flex}
   .topbar a{width:100%;white-space:normal;padding:.75rem 1rem;font-size:1rem}
 }
@@ -166,12 +168,12 @@ footer{padding:1.5rem 0;font-size:.9rem;color:var(--steel)}
     <div class="btns reveal" style="--d:.16s">
       <button class="btn primary" type="button" id="playIntro">
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>
-        Play intro
+        Play Intro
       </button>
       <details class="menu" id="resumeMenu">
         <summary class="btn ghost">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16"/></svg>
-          Download resume
+          Download Resume
           <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
         </summary>
         <div class="menu-list">
@@ -283,8 +285,8 @@ footer{padding:1.5rem 0;font-size:.9rem;color:var(--steel)}
       <p class="reveal">Email me at <a href="mailto:cyber@kenleesecurity.com">cyber@kenleesecurity.com</a> or find me on <a href="https://www.linkedin.com/in/kenlee1995/">LinkedIn</a>.</p>
       <div class="btns reveal" style="--d:.1s">
         <a class="btn primary" href="mailto:cyber@kenleesecurity.com">Start a conversation</a>
-        <a class="btn ghost" href="resume/KenLee-Resume.pdf" download>Download resume (PDF)</a>
-        <a class="btn ghost" href="resume/KenLee-Resume.docx" download>Download resume (DOCX)</a>
+        <a class="btn ghost" href="resume/Ken-Surname-Resume.pdf" download>Download resume (PDF)</a>
+        <a class="btn ghost" href="resume/Ken-Surname-Resume.docx" download>Download resume (DOCX)</a>
       </div>
     </div>
   </section>
