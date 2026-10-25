@@ -283,8 +283,15 @@ footer{padding:1.5rem 0;font-size:.9rem;color:var(--steel)}
   var playBtn = document.getElementById('playIntro');
   var vid = document.getElementById('introVideo');
   playBtn.addEventListener('click', function(){
+    // Keep the mini-player from flashing up while the page scrolls to the video
+    suppressMini = true;
+    function settle(){ if (suppressMini) { suppressMini = false; updateMini(); } }
+    window.addEventListener('scrollend', settle, {once:true});
+    setTimeout(settle, 1200);
     document.getElementById('intro').scrollIntoView({behavior:'smooth'});
-    if (vid) { var p = vid.play(); if (p && p.catch) p.catch(function(){}); }
+    // Start playback from inside the click so the browser allows sound
+    if (ytPlayer && ytPlayer.playVideo) ytPlayer.playVideo();
+    else pendingPlay = true;
   });
 
   // Close the resume menu on outside click or Escape
@@ -340,9 +347,9 @@ footer{padding:1.5rem 0;font-size:.9rem;color:var(--steel)}
   var slot = document.querySelector('.video-slot');
   var frame = document.getElementById('introFrame');
   var miniClose = document.getElementById('miniClose');
-  var ytPlayer = null, isPlaying = false, dismissed = false, slotVisible = true;
+  var ytPlayer = null, isPlaying = false, dismissed = false, slotVisible = true, suppressMini = false, pendingPlay = false;
   function updateMini(){
-    var float = !slotVisible && !dismissed && (isPlaying || frame.classList.contains('mini'));
+    var float = !slotVisible && !dismissed && !suppressMini && (isPlaying || frame.classList.contains('mini'));
     frame.classList.toggle('mini', float);
   }
   if (slot && frame) {
@@ -354,7 +361,7 @@ footer{padding:1.5rem 0;font-size:.9rem;color:var(--steel)}
       }, {rootMargin:'-56px 0px 0px 0px'}).observe(slot);
     }
     window.onYouTubeIframeAPIReady = function(){
-      ytPlayer = new YT.Player('introVideoFrame', {events:{onStateChange:function(e){
+      ytPlayer = new YT.Player('introVideoFrame', {events:{onReady:function(){ if (pendingPlay) { pendingPlay = false; ytPlayer.playVideo(); } },onStateChange:function(e){
         var S = YT.PlayerState;
         if (e.data === S.PLAYING) isPlaying = true;
         else if (e.data === S.PAUSED) isPlaying = false;
