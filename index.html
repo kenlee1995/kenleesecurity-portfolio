@@ -75,7 +75,12 @@ details.menu[open] summary .chev{transform:rotate(180deg)}
 .btn svg{width:1.1em;height:1.1em}
 
 /* Video */
-.frame{background:var(--ink);border-radius:14px;overflow:hidden;aspect-ratio:16/9;box-shadow:0 1px 0 var(--line)}
+.video-slot{aspect-ratio:16/9}
+.frame{position:relative;width:100%;background:var(--ink);border-radius:14px;overflow:hidden;aspect-ratio:16/9;box-shadow:0 1px 0 var(--line)}
+.frame.mini{position:fixed;right:1rem;bottom:calc(1rem + env(safe-area-inset-bottom,0px));width:min(320px,calc(100vw - 2rem));z-index:30;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+.mini-close{display:none;position:absolute;top:.4rem;right:.4rem;z-index:2;width:1.9rem;height:1.9rem;border:0;border-radius:50%;background:rgba(0,0,0,.7);color:#fff;font:400 1.2rem/1 var(--body);cursor:pointer;align-items:center;justify-content:center}
+.mini-close:hover{background:#000}
+.frame.mini .mini-close{display:flex}
 .frame video,.frame iframe{width:100%;height:100%;display:block;border:0;background:#000}
 .caption{margin-top:1rem;color:var(--steel);font-size:.95rem}
 
@@ -133,7 +138,7 @@ footer{padding:1.5rem 0;font-size:.9rem;color:var(--steel)}
 <header class="hero" id="top">
   <div class="wrap">
     <div class="hero-card reveal">
-      <img class="avatar" src="media/headshot.jpg" width="148" height="148" alt="Portrait of Ken">
+      <img class="avatar" src="headshot.jpg" width="148" height="148" alt="Portrait of Ken">
       <div>
         <p class="role">Security Operations Lead</p>
         <h1>Ken Lee</h1>
@@ -165,13 +170,16 @@ footer{padding:1.5rem 0;font-size:.9rem;color:var(--steel)}
   <section id="intro">
     <div class="wrap">
       <h2 class="reveal">A sixty second introduction</h2>
-      <div class="frame reveal" style="--d:.1s">
+      <div class="video-slot reveal" style="--d:.1s">
+        <div class="frame" id="introFrame">
+        <button class="mini-close" type="button" id="miniClose" aria-label="Close mini player and pause the video">&times;</button>
         <!-- Option B: YouTube/Vimeo.-->
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/gvIFNfKBjnA?si=okCivguqt70r7wxl"
+        <iframe id="introVideoFrame" width="560" height="315" src="https://www.youtube.com/embed/gvIFNfKBjnA?si=okCivguqt70r7wxl&enablejsapi=1"
                 title="YouTube video player" frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
         </iframe>
+        </div>
       </div>
       <p class="caption reveal" id="vid-note">Who I am, what I lead, and the kind of team I'm looking to join.</p>
     </div>
@@ -326,6 +334,44 @@ footer{padding:1.5rem 0;font-size:.9rem;color:var(--steel)}
   window.addEventListener('touchmove', release, {passive:true});
   window.addEventListener('keydown', function(e){ if (e.key !== 'Enter') release(); });
   document.addEventListener('pointerdown', function(e){ if (!e.target.closest('.topbar')) release(); });
+
+  // Mini-player: while the intro video is playing, pin it to the corner once it scrolls out of view
+  var slot = document.querySelector('.video-slot');
+  var frame = document.getElementById('introFrame');
+  var miniClose = document.getElementById('miniClose');
+  var ytPlayer = null, isPlaying = false, dismissed = false, slotVisible = true;
+  function updateMini(){
+    var float = !slotVisible && !dismissed && (isPlaying || frame.classList.contains('mini'));
+    frame.classList.toggle('mini', float);
+  }
+  if (slot && frame) {
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function(entries){
+        slotVisible = entries[0].isIntersecting;
+        if (slotVisible) dismissed = false;
+        updateMini();
+      }, {rootMargin:'-56px 0px 0px 0px'}).observe(slot);
+    }
+    window.onYouTubeIframeAPIReady = function(){
+      ytPlayer = new YT.Player('introVideoFrame', {events:{onStateChange:function(e){
+        var S = YT.PlayerState;
+        if (e.data === S.PLAYING) isPlaying = true;
+        else if (e.data === S.PAUSED) isPlaying = false;
+        else if (e.data === S.ENDED) { isPlaying = false; dismissed = true; }
+        updateMini();
+      }}});
+    };
+    var apiTag = document.createElement('script');
+    apiTag.src = 'https://www.youtube.com/iframe_api';
+    document.head.appendChild(apiTag);
+    function closeMini(){
+      dismissed = true;
+      if (ytPlayer && ytPlayer.pauseVideo) ytPlayer.pauseVideo();
+      updateMini();
+    }
+    miniClose.addEventListener('click', closeMini);
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && frame.classList.contains('mini')) closeMini(); });
+  }
 
   // Reveal elements as they scroll into view
   var items = document.querySelectorAll('.reveal');
