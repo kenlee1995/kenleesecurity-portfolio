@@ -123,14 +123,14 @@ details.menu[open] summary .chev{transform:rotate(180deg)}
 .caption{margin-top:1rem;color:var(--steel);font-size:.95rem}
 
 /* Timeline: the one deliberate motion piece */
-.timeline{position:relative;padding-left:2.2rem}
+.timeline{position:relative;padding-left:3rem}
 .timeline::before,.timeline .progress{content:"";position:absolute;left:6px;top:.4rem;bottom:.4rem;width:2px;background:var(--line)}
 .timeline .progress{background:var(--accent);bottom:auto;height:calc(var(--p,0) * (100% - .8rem));transition:height .15s linear}
 .job{position:relative;padding-bottom:3rem}
 .job:last-child{padding-bottom:0}
-.job::before{content:"";position:absolute;left:-2.2rem;top:.5rem;width:14px;height:14px;border-radius:50%;background:var(--pair);border:2px solid var(--accent)}
+.job::before{content:"";position:absolute;left:-3rem;top:.25rem;width:14px;height:14px;border-radius:50%;background:var(--pair);border:2px solid var(--accent)}
 .job.has-logo::before{display:none}
-.job-logo{position:absolute;left:calc(-2.2rem - 15px);top:0;z-index:1;width:44px;height:44px;border-radius:50%;background:#fff;box-shadow:0 0 0 2px var(--accent)}
+.job-logo{position:absolute;left:calc(-3rem - 15px);top:-7px;z-index:1;width:44px;height:44px;border-radius:50%;background:#fff;box-shadow:0 0 0 2px var(--accent)}
 .job .when{color:var(--steel);font-size:.95rem;margin:.2rem 0 .8rem}
 .job ul{margin:0;padding-left:1.1rem;max-width:62ch}
 .job li{margin-bottom:.4rem}
