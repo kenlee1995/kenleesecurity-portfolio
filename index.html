@@ -129,6 +129,8 @@ details.menu[open] summary .chev{transform:rotate(180deg)}
 .job{position:relative;padding-bottom:3rem}
 .job:last-child{padding-bottom:0}
 .job::before{content:"";position:absolute;left:-2.2rem;top:.5rem;width:14px;height:14px;border-radius:50%;background:var(--pair);border:2px solid var(--accent)}
+.job.has-logo::before{display:none}
+.job-logo{position:absolute;left:calc(-2.2rem - 15px);top:0;z-index:1;width:44px;height:44px;border-radius:50%;background:#fff;box-shadow:0 0 0 2px var(--accent)}
 .job .when{color:var(--steel);font-size:.95rem;margin:.2rem 0 .8rem}
 .job ul{margin:0;padding-left:1.1rem;max-width:62ch}
 .job li{margin-bottom:.4rem}
@@ -244,7 +246,8 @@ footer{padding:1.5rem 0;font-size:.9rem;color:var(--steel)}
       <div class="timeline" id="timeline">
         <div class="progress" aria-hidden="true"></div>
 
-        <article class="job reveal">
+        <article class="job has-logo reveal">
+          <img class="job-logo" src="media/deloitte.png" alt="" width="44" height="44">
           <h3>Lead Security Operations Analyst, Deloitte</h3>
           <p class="when">April 2023 to present</p>
           <ul>
@@ -273,7 +276,8 @@ footer{padding:1.5rem 0;font-size:.9rem;color:var(--steel)}
           </ul>
         </article>
 
-        <article class="job reveal">
+        <article class="job has-logo reveal">
+          <img class="job-logo" src="media/lookingglass.png" alt="" width="44" height="44">
           <h3>Associate Cyber Threat Analyst, LookingGlass Cyber Solutions</h3>
           <p class="when">August 2019 to April 2020</p>
           <ul>
